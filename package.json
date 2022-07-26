@@ -1,91 +1,165 @@
 {
-	"name": "firelordrn",
-	"version": "1.6.6",
-	"description": "🔥 Extremely High Precision Typescript Wrapper for Firestore React Native, Providing Unparalleled Type Safe and Dev Experience",
-	"source": "src/index.ts",
-	"main": "dist/src/index.js",
-	"types": "dist/src/index.d.ts",
-	"targets": {
-		"types": false,
-		"main": {
-			"optimize": true
-		}
-	},
-	"scripts": {
-		"reinstall": "rm -rf node_modules && rm -rf package-lock.json && npm i && npx husky install",
-		"tsc": "tsc",
-		"lint": "eslint . --ext .ts --fix",
-		"pretty-quick": "pretty-quick --stage",
-		"test": "firebase emulators:exec --only firestore \"rm -rf coverage && jest --forceExit\"",
-		"parcel": "npm un firebase && npm i firebase && rm -rf dist && tsc --emitDeclarationOnly true && parcel build && npm i -D firebase",
-		"build": "rm -rf dist && tsc",
-		"link": "npm unlink firelordjs && npm link && npm link firelordjs",
-		"babel": "babel-node -x .ts -- src/fieldPath/documentId.ts",
-		"jest": "jest src/queryClauses/index.test.ts --forceExit",
-		"commit": "git commit --no-verify",
-		"dev": "---------------------dev------------------------",
-		"d-link": "npm run build && npm run link",
-		"d-test": "tsc && npm test",
-		"d-b-test": "npm run d-link && npm run b-uninstall && npm run b-tsc &&  npm run b-test",
-		"d-p-test": "npm run p-reinstall && npm run p-test",
-		"d-pub": "npm run build && npm publish --tag beta",
-		"built": "-------------test built file-----------------------",
-		"b-tsc": "tsc -p tsconfig.doc.json",
-		"b-test": "firebase emulators:exec --only firestore \"jest --forceExit -c=jest.config.doc.js\"",
-		"b-uninstall": "npm --prefix codeForDoc run uninstall",
-		"published": "-------------test published file-----------------------",
-		"p-reinstall": "npm --prefix codeForDoc run reinstall && babel-node -x .ts scripts/installLatest.ts",
-		"p-test": "npm --prefix codeForDoc test"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/tylim88/firelordjs.git"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/tylim88/firelordjs/issues"
-	},
-	"homepage": "https://firelordjs.com",
-	"keywords": [
-		"firebase",
-		"firestore",
-		"wrapper",
-		"typescript",
-		"web",
-		"scalable",
-		"type-safe",
-		"V9"
-	],
-	"devDependencies": {
-		"@babel/node": "^7.18.9",
-		"@babel/preset-env": "^7.17.10",
-		"@babel/preset-typescript": "^7.16.7",
-		"@firebase/rules-unit-testing": "^2.0.2",
-		"@react-native-firebase/firestore": "^15.2.0",
-		"@types/jest": "^27.5.0",
-		"@types/lodash": "^4.14.182",
-		"@types/shelljs": "^0.8.11",
-		"@typescript-eslint/eslint-plugin": "^5.23.0",
-		"@typescript-eslint/parser": "^5.23.0",
-		"betwin": "^1.1.3",
-		"dotenv": "^16.0.0",
-		"eslint": "^8.15.0",
-		"eslint-cli": "^1.1.1",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-import-resolver-typescript": "^2.7.1",
-		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-prettier": "^4.0.0",
-		"firebase": "^9.8.1",
-		"husky": "^8.0.1",
-		"jest": "^28.1.0",
-		"jsdoc": "^3.6.10",
-		"lodash": "^4.17.21",
-		"metro-react-native-babel-preset": "^0.71.3",
-		"parcel": "^2.5.0",
-		"pick-random": "^3.0.0",
-		"prettier": "^2.6.2",
-		"pretty-quick": "^3.1.3",
-		"shelljs": "^0.8.5",
-		"typescript": "^4.6.4"
-	}
+  "name": "firelordrn",
+  "version": "0.1.0",
+  "description": "test",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "firelordrn.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "scripts": {
+    "test": "jest",
+    "typescript": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "prepare": "bob build",
+    "release": "release-it",
+    "example": "yarn --cwd example",
+    "bootstrap": "yarn example && yarn && yarn example pods"
+  },
+  "keywords": [
+    "react-native",
+    "ios",
+    "android"
+  ],
+  "repository": "https://github.com/tylim88/firelordrn",
+  "author": "tylim <limteikyee@gmail.com> (https://github.com/tylim88)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tylim88/firelordrn/issues"
+  },
+  "homepage": "https://github.com/tylim88/firelordrn#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@react-native-community/eslint-config": "^3.0.2",
+    "@react-native-firebase/app": "^15.2.0",
+    "@react-native-firebase/firestore": "^15.2.0",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "@types/jest": "^28.1.2",
+    "@types/lodash": "^4.14.182",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "0.68.0",
+    "betwin": "^1.1.3",
+    "commitlint": "^17.0.2",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.1",
+    "jsdoc": "^3.6.11",
+    "lodash": "^4.17.21",
+    "pick-random": "3.0.0",
+    "pod-install": "^0.1.0",
+    "prettier": "^2.0.5",
+    "react": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-builder-bob": "^0.18.3",
+    "release-it": "^15.0.0",
+    "typescript": "^4.5.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.21"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|@react-native|@react-native-firebase/firestore|@react-native-firebase/app|@react-native-firebase/)/)"
+    ],
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@babel/eslint-parser",
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
 }
